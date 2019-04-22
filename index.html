@@ -1,0 +1,65 @@
+Google Maps Mashup Starter Code:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		#map {
+			height: 100%;
+		}
+		/* Optional: Makes the sample page fill the window. */
+		html, body {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+	var map;
+	var parks = [
+		{"park":"Yellowstone","coords":[44.4280,-110.5885]},
+		{"park":"Glacier","coords":[48.7596, -113.7870]},
+        {"site":"lambton college","coords":[48.7596, -113.7870]},
+        {"32 peace dr":"my house","coords":[43.773006, -79.229234]},
+        {"16 yellowpine road":"house","coords":[43.774431, -79.702508]},
+        {"10 boultbee ave":"new work","coords":[43.672987, -79.339404]},
+        {"4110 lawrence avenue east":"work","coords":[43.767606, -79.193506]},
+        {"punjab":"homecountry","coords":[30.860937, 74.965733]},
+        
+		];
+
+	function initMap() {
+		map = new google.maps.Map(document.getElementById('map'), {
+			zoom: 4,
+			center: new google.maps.LatLng(44, -110),
+			mapTypeId: 'terrain'
+		});
+
+		mashParks(parks);
+	}
+
+	function mashParks(results) {
+	for (var i = 0; i < results.length; i++) {
+		var coords = results[i].coords;
+		var latLng = new google.maps.LatLng(coords[0], coords[1]);
+		var marker = new google.maps.Marker({
+			position: latLng,
+			map: map,
+			label:results[i].park
+			});
+		}
+	}
+
+
+
+</script>
+<script async defer
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTM5RKrtCLpZAj5HU3K3cTvFNB240NsBg&callback=initMap">
+</script>
+</body>
+</html>
